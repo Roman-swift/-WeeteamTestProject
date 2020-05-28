@@ -1,24 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M52-NK-sI4">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Weeteam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Bwv-5Y-gsZ">
+                                <rect key="frame" x="50" y="94" width="275" height="523"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmc-cP-QUV">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="161"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTh-Nn-Ob1">
+                                                <rect key="frame" x="0.0" y="0.0" width="275" height="161"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="NTh-Nn-Ob1" secondAttribute="bottom" id="2ks-bD-vEF"/>
+                                            <constraint firstItem="NTh-Nn-Ob1" firstAttribute="top" secondItem="dmc-cP-QUV" secondAttribute="top" id="97I-Ob-Go5"/>
+                                            <constraint firstAttribute="trailing" secondItem="NTh-Nn-Ob1" secondAttribute="trailing" id="PtN-S9-vJ8"/>
+                                            <constraint firstItem="NTh-Nn-Ob1" firstAttribute="leading" secondItem="dmc-cP-QUV" secondAttribute="leading" id="ie9-eZ-lgS"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHn-br-wPF">
+                                        <rect key="frame" x="0.0" y="181" width="275" height="161"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJo-do-9Pw">
+                                                <rect key="frame" x="0.0" y="0.0" width="275" height="161"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="cJo-do-9Pw" firstAttribute="top" secondItem="nHn-br-wPF" secondAttribute="top" id="4VL-1k-eoJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="cJo-do-9Pw" secondAttribute="trailing" id="ftq-rg-CLN"/>
+                                            <constraint firstAttribute="bottom" secondItem="cJo-do-9Pw" secondAttribute="bottom" id="icl-4Q-toj"/>
+                                            <constraint firstItem="cJo-do-9Pw" firstAttribute="leading" secondItem="nHn-br-wPF" secondAttribute="leading" id="u4s-cn-CYe"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzm-xl-lcF">
+                                        <rect key="frame" x="0.0" y="362" width="275" height="161"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nir-CG-3KG">
+                                                <rect key="frame" x="0.0" y="0.0" width="275" height="161"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="nir-CG-3KG" firstAttribute="leading" secondItem="mzm-xl-lcF" secondAttribute="leading" id="avV-ix-h91"/>
+                                            <constraint firstAttribute="trailing" secondItem="nir-CG-3KG" secondAttribute="trailing" id="jLL-GF-4co"/>
+                                            <constraint firstAttribute="bottom" secondItem="nir-CG-3KG" secondAttribute="bottom" id="uxA-l5-PsG"/>
+                                            <constraint firstItem="nir-CG-3KG" firstAttribute="top" secondItem="mzm-xl-lcF" secondAttribute="top" id="ylR-en-fT7"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Bwv-5Y-gsZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="1E0-my-u3B"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bwv-5Y-gsZ" secondAttribute="bottom" constant="50" id="6gW-Pl-JQC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bwv-5Y-gsZ" secondAttribute="trailing" constant="50" id="bUS-EX-qxR"/>
+                            <constraint firstItem="Bwv-5Y-gsZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="foC-KR-lAa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="QFM-oX-hh9">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="heart.fill" catalog="system" id="sWi-O8-63L">
+                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mostEmailedButton" destination="NTh-Nn-Ob1" id="PdW-dj-Z6d"/>
+                        <outlet property="mostEmailedView" destination="dmc-cP-QUV" id="hZN-lN-dbQ"/>
+                        <outlet property="mostSharedButton" destination="cJo-do-9Pw" id="7aB-pQ-aGQ"/>
+                        <outlet property="mostSharedView" destination="nHn-br-wPF" id="Hlz-9g-ncx"/>
+                        <outlet property="mostViewedButton" destination="nir-CG-3KG" id="fOP-n7-E0Q"/>
+                        <outlet property="mostViewedView" destination="mzm-xl-lcF" id="5cG-SQ-xoB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1079.2" y="129.98500749625188"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5Ub-Uc-dIe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M52-NK-sI4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QAF-zn-nZP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                            <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="iN9-T9-ouL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="04m-eQ-087" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="129.98500749625188"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="heart.fill" catalog="system" width="64" height="54"/>
+    </resources>
 </document>

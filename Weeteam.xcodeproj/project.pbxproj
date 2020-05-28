@@ -3,13 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1C04DCCE247FA2010098DA57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DCCD247FA2010098DA57 /* AppDelegate.swift */; };
 		1C04DCD0247FA2010098DA57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DCCF247FA2010098DA57 /* SceneDelegate.swift */; };
-		1C04DCD2247FA2010098DA57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DCD1247FA2010098DA57 /* ViewController.swift */; };
+		1C04DCD2247FA2010098DA57 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DCD1247FA2010098DA57 /* MainViewController.swift */; };
 		1C04DCD5247FA2010098DA57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C04DCD3247FA2010098DA57 /* Main.storyboard */; };
 		1C04DCD8247FA2010098DA57 /* Weeteam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DCD6247FA2010098DA57 /* Weeteam.xcdatamodeld */; };
 		1C04DCDA247FA2010098DA57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C04DCD9247FA2010098DA57 /* Assets.xcassets */; };
@@ -21,7 +21,7 @@
 		1C04DCCA247FA2010098DA57 /* Weeteam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weeteam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C04DCCD247FA2010098DA57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C04DCCF247FA2010098DA57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1C04DCD1247FA2010098DA57 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1C04DCD1247FA2010098DA57 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1C04DCD4247FA2010098DA57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C04DCD7247FA2010098DA57 /* Weeteam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weeteam.xcdatamodel; sourceTree = "<group>"; };
 		1C04DCD9247FA2010098DA57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 		1C04DCEB247FA29E0098DA57 /* main */ = {
 			isa = PBXGroup;
 			children = (
-				1C04DCD1247FA2010098DA57 /* ViewController.swift */,
+				1C04DCD1247FA2010098DA57 /* MainViewController.swift */,
 				1C04DCD3247FA2010098DA57 /* Main.storyboard */,
 			);
 			path = main;
@@ -147,7 +147,6 @@
 				8878A7D4806D4A6BACD3782F /* Pods-Weeteam.debug.xcconfig */,
 				896D139FDAC506EEA8441E73 /* Pods-Weeteam.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -267,7 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C04DCD8247FA2010098DA57 /* Weeteam.xcdatamodeld in Sources */,
-				1C04DCD2247FA2010098DA57 /* ViewController.swift in Sources */,
+				1C04DCD2247FA2010098DA57 /* MainViewController.swift in Sources */,
 				1C04DCCE247FA2010098DA57 /* AppDelegate.swift in Sources */,
 				1C04DCD0247FA2010098DA57 /* SceneDelegate.swift in Sources */,
 			);
