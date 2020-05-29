@@ -22,8 +22,6 @@
 		1C04DD10247FCDCE0098DA57 /* RequestPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DD0F247FCDCE0098DA57 /* RequestPaths.swift */; };
 		1C04DD19248003460098DA57 /* ArticleListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DD18248003460098DA57 /* ArticleListService.swift */; };
 		1C04DD1D248111720098DA57 /* CheckInternetConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DD1C248111720098DA57 /* CheckInternetConnect.swift */; };
-		1C9F8396248167570048BE8C /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9F8395248167570048BE8C /* CoreData.swift */; };
-		1C9F839824816AC20048BE8C /* ArticleEntity + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9F839724816AC20048BE8C /* ArticleEntity + Extension.swift */; };
 		1CA61D8B248115A400EBAD2A /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CA61D8A248115A400EBAD2A /* Detail.storyboard */; };
 		1CA61D8D2481165F00EBAD2A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA61D8C2481165F00EBAD2A /* DetailViewController.swift */; };
 		68D48FF5845FBE920F281C97 /* Pods_Weeteam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB245F546F835E8027AD883 /* Pods_Weeteam.framework */; };
@@ -47,8 +45,6 @@
 		1C04DD0F247FCDCE0098DA57 /* RequestPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPaths.swift; sourceTree = "<group>"; };
 		1C04DD18248003460098DA57 /* ArticleListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListService.swift; sourceTree = "<group>"; };
 		1C04DD1C248111720098DA57 /* CheckInternetConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternetConnect.swift; sourceTree = "<group>"; };
-		1C9F8395248167570048BE8C /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
-		1C9F839724816AC20048BE8C /* ArticleEntity + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArticleEntity + Extension.swift"; sourceTree = "<group>"; };
 		1CA61D8A248115A400EBAD2A /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		1CA61D8C2481165F00EBAD2A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5CB245F546F835E8027AD883 /* Pods_Weeteam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weeteam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,8 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				1C04DCD6247FA2010098DA57 /* Weeteam.xcdatamodeld */,
-				1C9F8395248167570048BE8C /* CoreData.swift */,
-				1C9F839724816AC20048BE8C /* ArticleEntity + Extension.swift */,
 			);
 			path = dataBase;
 			sourceTree = "<group>";
@@ -356,9 +350,7 @@
 				1C04DCD2247FA2010098DA57 /* StartViewController.swift in Sources */,
 				1C04DD1D248111720098DA57 /* CheckInternetConnect.swift in Sources */,
 				1C04DD19248003460098DA57 /* ArticleListService.swift in Sources */,
-				1C9F8396248167570048BE8C /* CoreData.swift in Sources */,
 				1C04DCEE247FBBF30098DA57 /* ArticlesListViewController.swift in Sources */,
-				1C9F839824816AC20048BE8C /* ArticleEntity + Extension.swift in Sources */,
 				1C04DCCE247FA2010098DA57 /* AppDelegate.swift in Sources */,
 				1C04DCD0247FA2010098DA57 /* SceneDelegate.swift in Sources */,
 				1C04DD09247FBFCC0098DA57 /* ArticleTableViewCell.swift in Sources */,

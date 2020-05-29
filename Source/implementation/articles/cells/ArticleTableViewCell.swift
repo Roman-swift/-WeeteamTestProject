@@ -40,4 +40,26 @@ class ArticleTableViewCell: UITableViewCell {
 
         }
 	}
+    
+    func configureFromDb(_ article: ArticleEntity){
+        DispatchQueue.main.async {
+            self.myView.layer.cornerRadius = 15
+            self.myView.layer.masksToBounds = false
+            self.myView.layer.shadowOffset = CGSize(width: 0, height: 0)
+            self.myView.layer.shadowColor = UIColor.black.cgColor
+            self.myView.layer.shadowOpacity = 0.23
+            self.myView.layer.shadowRadius = 5
+            
+            self.articleTitleLabel.text = article.title
+            self.articleTitleLabel.textColor = .white
+            
+            self.articleAuthorLabel.text =
+                article.author
+            self.articleAuthorLabel.textColor = .white
+            
+            self.articleBodyLable.text = article.abstract
+            self.articleBodyLable.textColor = .white
+            
+        }
+    }
 }
