@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var abstractTextView: UITextView!
     
-    var heading = "NY Times Article"
+    private var heading = "NY Times Article"
     var titleArtcile: String?
     var author: String?
     var articleUrl: String?
@@ -29,7 +29,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        self.setup()
     }
     
     func setup() {
@@ -43,7 +43,7 @@ class DetailViewController: UIViewController {
     
     func save() {
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-            
+
             let article = ArticleEntity(entity: ArticleEntity.entity(), insertInto: context)
             article.title = self.titleArtcile
             article.url = self.articleUrl
@@ -67,11 +67,5 @@ class DetailViewController: UIViewController {
     
     @IBAction func backBtnTapped(_ sender: Any) {
        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func dbSaveUserModel(_ article: ArticleViewModel, completion: @escaping (() -> Void)) {
-       
-
-       
     }
 }

@@ -113,7 +113,6 @@ class ArticlesListViewController: UIViewController {
     
     private func downloadFavourite() {
         self.fetchArtcileFromCoreDataWithPredicate()
-        self.refreshControl.endRefreshing()
         self.activityIndicator.stopAnimating()
     }
     
@@ -127,6 +126,7 @@ class ArticlesListViewController: UIViewController {
             let articles = try managedObject.fetch(articleFetchRequest)
             print(articles.count)
             for article in articles{
+                print(article.date)
                 articlesDB.append(article)
             }
         } catch let error as NSError {
@@ -149,9 +149,16 @@ extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticlesListViewController", for: indexPath) as! ArticleTableViewCell
         if favorites {
-            self.downloadFavourite()
-            for el in articlesDB {
-                cell.configureFromDb(el)
+
+            let sort = Array(Set(articlesDB))
+            print(articlesDB.count)
+            for article in sort {
+                if article.date != nil {
+                print("___________"+"\(article.date)")
+
+                cell.configureFromDb(article)
+                }
+                
             }
         } else {
             cell.configure(self.articles[indexPath.row])
