@@ -6,5 +6,7 @@ target 'Weeteam' do
   use_frameworks!
 
   pod 'Alamofire'
+  pod 'ObjectMapper'
+
 
 end

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="meS-dW-uNL">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Articles-->
+        <scene sceneID="llt-PU-GpI">
+            <objects>
+                <viewController storyboardIdentifier="ArticlesListViewController" id="meS-dW-uNL" customClass="ArticlesListViewController" customModule="Weeteam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qRc-Vj-CBa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="70I-S5-9Qd">
+                                <rect key="frame" x="0.0" y="5" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="LIM-Xn-Gx4">
+                                <rect key="frame" x="157" y="403" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="6bw-d8-PE7"/>
+                                    <constraint firstAttribute="height" constant="100" id="SgV-1q-EBi"/>
+                                </constraints>
+                                <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="70I-S5-9Qd" firstAttribute="centerX" secondItem="EBu-sD-sm4" secondAttribute="centerX" id="3I6-DM-rCt"/>
+                            <constraint firstItem="70I-S5-9Qd" firstAttribute="height" secondItem="qRc-Vj-CBa" secondAttribute="height" id="5fG-8w-mEb"/>
+                            <constraint firstItem="LIM-Xn-Gx4" firstAttribute="centerX" secondItem="70I-S5-9Qd" secondAttribute="centerX" id="5zP-2D-d5f"/>
+                            <constraint firstItem="70I-S5-9Qd" firstAttribute="width" secondItem="qRc-Vj-CBa" secondAttribute="width" id="C8N-tq-4yI"/>
+                            <constraint firstItem="LIM-Xn-Gx4" firstAttribute="centerY" secondItem="70I-S5-9Qd" secondAttribute="centerY" id="cWh-th-SAA"/>
+                            <constraint firstItem="70I-S5-9Qd" firstAttribute="centerY" secondItem="EBu-sD-sm4" secondAttribute="centerY" id="u1R-rG-IQe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EBu-sD-sm4"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Articles" id="VVG-Ap-pwX"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="LIM-Xn-Gx4" id="zne-cG-Q6E"/>
+                        <outlet property="articlesTableView" destination="70I-S5-9Qd" id="dyZ-uJ-iyP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fwk-n1-4bz" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1809" y="275"/>
+        </scene>
+    </scenes>
+</document>
