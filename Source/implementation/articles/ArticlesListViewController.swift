@@ -25,9 +25,11 @@ class ArticlesListViewController: UIViewController {
     
     var articles = [ArticleViewModel]()
     var articlesDB = [ArticleEntity]()
-    
     var selectedTap: Int!
     var favorites: Bool = false
+    
+    private var sortedArticlesDB = [ArticleEntity]()
+    private var selectedIndexPath: IndexPath? = nil
     private var refreshControl = UIRefreshControl()
     private var typeOfArticle: ArticlePaths.Request?
     
@@ -124,14 +126,35 @@ class ArticlesListViewController: UIViewController {
         
         do {
             let articles = try managedObject.fetch(articleFetchRequest)
-            print(articles.count)
             for article in articles{
-                print(article.date)
                 articlesDB.append(article)
+                self.sortedArticlesDB = Array(Set(self.articlesDB))
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
+    }
+    
+    func setupDataBaseDetail(_ model: ArticleEntity) -> UIViewController{
+        let storyboard = UIStoryboard(name: "Detail", bundle: nil)
+        let articleVC =  storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        articleVC.titleArtcile = model.title
+        articleVC.author = model.author
+        articleVC.articleUrl = model.url
+        articleVC.date = model.date
+        articleVC.abstract = model.abstract
+        return articleVC
+    }
+    
+    func setupNetworkDetail(_ model: ArticleViewModel) -> UIViewController{
+        let storyboard = UIStoryboard(name: "Detail", bundle: nil)
+        let articleVC =  storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        articleVC.titleArtcile = model.title
+        articleVC.author = model.author
+        articleVC.articleUrl = model.url
+        articleVC.date = model.date
+        articleVC.abstract = model.abstract
+        return articleVC
     }
 }
 
@@ -148,37 +171,28 @@ extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticlesListViewController", for: indexPath) as! ArticleTableViewCell
+        
         if favorites {
-
-            let sort = Array(Set(articlesDB))
-            print(articlesDB.count)
-            for article in sort {
-                if article.date != nil {
-                print("___________"+"\(article.date)")
-
-                cell.configureFromDb(article)
-                }
-                
-            }
+            cell.configureFromDb(sortedArticlesDB[indexPath.row])
         } else {
             cell.configure(self.articles[indexPath.row])
         }
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let articleModel = articles[indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
-        let storyboard = UIStoryboard(name: "Detail", bundle: nil)
-        let articleVC =  storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        articleVC.titleArtcile = articleModel.title
-        articleVC.author = articleModel.author
-        articleVC.articleUrl = articleModel.url
-        articleVC.date = articleModel.date
-        articleVC.abstract = articleModel.abstract
-        articleVC.articleModel = articleModel
-        articleVC.modalPresentationStyle = .fullScreen
-        self.present(articleVC, animated: true, completion: nil)
+        if selectedIndexPath != indexPath && !favorites{
+            let vc = self.setupNetworkDetail(articles[indexPath.row])
+            vc.modalPresentationStyle = .fullScreen
+            selectedIndexPath = nil
+            tableView.deselectRow(at: indexPath, animated: false)
+            self.present(vc, animated: true, completion: nil)
+        } else {
+            selectedIndexPath = indexPath
+            tableView.deselectRow(at: indexPath, animated: false)
+            let vc = self.setupDataBaseDetail(sortedArticlesDB[indexPath.row])
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 }

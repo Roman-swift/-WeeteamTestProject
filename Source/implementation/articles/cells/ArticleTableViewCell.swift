@@ -15,8 +15,6 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var articleAuthorLabel: UILabel!
 	@IBOutlet weak var articleBodyLable: UILabel!
 
-//    private var article: ArticleViewModel?
-
 	func configure(_ article: ArticleViewModel) {
         DispatchQueue.main.async {
             self.myView.layer.cornerRadius = 15
@@ -25,9 +23,7 @@ class ArticleTableViewCell: UITableViewCell {
             self.myView.layer.shadowColor = UIColor.black.cgColor
             self.myView.layer.shadowOpacity = 0.23
             self.myView.layer.shadowRadius = 5
-            
-//            self.article = article
-            
+                        
             self.articleTitleLabel.text = article.title
             self.articleTitleLabel.textColor = .white
             
@@ -37,7 +33,6 @@ class ArticleTableViewCell: UITableViewCell {
 
             self.articleBodyLable.text = article.abstract
             self.articleBodyLable.textColor = .white
-
         }
 	}
     
@@ -49,18 +44,17 @@ class ArticleTableViewCell: UITableViewCell {
             self.myView.layer.shadowColor = UIColor.black.cgColor
             self.myView.layer.shadowOpacity = 0.23
             self.myView.layer.shadowRadius = 5
-//            self.article = articleE as! ArticleViewModel
 
-//            for article in articles {
-            self.articleTitleLabel.text = articleE.title
-            self.articleTitleLabel.textColor = .white
-            
-            self.articleAuthorLabel.text =
-                articleE.author
-            self.articleAuthorLabel.textColor = .white
-            
-            self.articleBodyLable.text = articleE.abstract
-            self.articleBodyLable.textColor = .white
+//            for i in articleE{
+                self.articleTitleLabel.text = articleE.title
+                self.articleTitleLabel.textColor = .white
+                
+                self.articleAuthorLabel.text =
+                    articleE.author
+                self.articleAuthorLabel.textColor = .white
+                
+                self.articleBodyLable.text = articleE.abstract
+                self.articleBodyLable.textColor = .white
 //            }
             
         }
