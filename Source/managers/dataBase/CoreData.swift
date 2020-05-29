@@ -25,7 +25,7 @@ final class CoreData {
     private(set) static var stack = CoreData()
     
     private lazy var container: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "NYTimes")
+        let container = NSPersistentContainer(name: "ArticleEntity")
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
                 print("Unresolved error \(error), \(error.userInfo)")

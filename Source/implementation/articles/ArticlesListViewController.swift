@@ -41,15 +41,13 @@ class ArticlesListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if Connectivity.isConnectedToInternet() {
+        if !favorites {
             activityIndicator.startAnimating()
             self.loadDataFromApi()
         } else {
             self.downloadFavourite()
-            self.showErrorAlert()
         }
     }
-    
     
     func loadDataFromApi() {
         
@@ -113,41 +111,44 @@ class ArticlesListViewController: UIViewController {
     }
     
     func downloadFavourite() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ArticleEntity")
-        
-//        do {
-//            articlesDB = try managedContext.fetch(fetchRequest)
-//        } catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//        }
+            self.fetchArtcileFromCoreDataWithPredicate()
     }
-    //    func loadSaveData()  {
-    //           let eventRequest: NSFetchRequest<Event> = Event.fetchRequest()
-    //           do{
-    //               eventArray = try manageObjectContext.fetch(eventRequest)
-    //               self.mTableView.reloadData()
-    //           }catch
-    //           {
-    //               print("Could not load save data: \(error.localizedDescription)")
-    //           }
-    //       }
-}
+            
+        func fetchArtcileFromCoreDataWithPredicate(){
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let managedObject = appDelegate.persistentContainer.viewContext
+            let articleFetchRequest = NSFetchRequest<ArticleEntity>(entityName: "ArticleEntity")
+            articleFetchRequest.predicate = NSPredicate(format: "author == %@", "")
+            
+            do {
+                let articles = try managedObject.fetch(articleFetchRequest)
+                print(articles.count)
+                print(managedObject)
+                for article in articles{
+                    articlesDB.append(article as! ArticleViewModel)
+                    
+                }
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+        }
+    }
 
 extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.count
+        if favorites {
+            return articlesDB.count
+        } else {
+            return articles.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticlesListViewController", for: indexPath) as! ArticleTableViewCell
         if favorites {
             self.downloadFavourite()
-//            cell.configure(self.articlesDB[indexPath.row])
+            cell.configure(self.articlesDB[indexPath.row])
         } else {
             cell.configure(self.articles[indexPath.row])
         }

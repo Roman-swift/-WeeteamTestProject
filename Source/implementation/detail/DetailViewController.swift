@@ -26,7 +26,7 @@ class DetailViewController: UIViewController {
     var date: String?
     var abstract: String?
     var articleModel: ArticleViewModel?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -42,24 +42,18 @@ class DetailViewController: UIViewController {
     }
     
     func save() {
-      guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-        return
-      }
-
-      let managedContext = appDelegate.persistentContainer.viewContext
-      let entity = NSEntityDescription.entity(forEntityName: "ArticleEntityCode", in: managedContext)
-        let article = NSManagedObject(entity: entity!, insertInto: managedContext) as! ArticleViewModel
-
-        article.setValue(self.titleArtcile, forKey: "title")
-        article.setValue(self.author, forKey: "author")
-        article.setValue(self.abstract, forKey: "abstract")
-
-      do {
-        try managedContext.save()
-        
-      } catch let error as NSError {
-        print("Could not save. \(error), \(error.userInfo)")
-      }
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+            
+            let article = ArticleEntity(entity: ArticleEntity.entity(), insertInto: context)
+            article.title = self.titleArtcile
+            article.url = self.articleUrl
+            article.abstract = self.abstract
+            article.author = self.author
+            article.date = self.date
+            
+            try? context.save()
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc func readmoreTapped() {
