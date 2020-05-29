@@ -19,6 +19,16 @@ class ArticleViewModel: NSObject, Mappable {
     var date: String?
     var type: String?
     
+    init(url: String, title: String, abstract: String, section: String, author: String, date: String, type: String) {
+        self.url = url
+        self.title = title
+        self.abstract = abstract
+        self.section = section
+        self.author = author
+        self.date = date
+        self.type = type
+    }
+    
     required init?(map: Map) {
         
     }
@@ -33,5 +43,13 @@ class ArticleViewModel: NSObject, Mappable {
         type <- map["type"]
     }
     
-    
+    init(entity: ArticleEntity) {
+        self.url = entity.url
+        self.title = entity.title
+        self.abstract = entity.abstract
+        self.section = entity.section
+        self.author = entity.author
+        self.date = entity.date
+        self.type = entity.type
+    }
 }

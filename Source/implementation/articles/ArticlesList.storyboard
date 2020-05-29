@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Articles-->
+        <!--NY Time Article-->
         <scene sceneID="llt-PU-GpI">
             <objects>
                 <viewController storyboardIdentifier="ArticlesListViewController" id="meS-dW-uNL" customClass="ArticlesListViewController" customModule="Weeteam" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,7 +38,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EBu-sD-sm4"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Articles" id="VVG-Ap-pwX"/>
+                    <navigationItem key="navigationItem" title="NY Time Article" id="VVG-Ap-pwX"/>
                     <connections>
                         <outlet property="activityIndicator" destination="LIM-Xn-Gx4" id="zne-cG-Q6E"/>
                         <outlet property="articlesTableView" destination="70I-S5-9Qd" id="dyZ-uJ-iyP"/>

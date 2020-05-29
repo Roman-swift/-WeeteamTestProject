@@ -24,24 +24,29 @@ class StartViewController: UIViewController {
     }
     
     // MARK: - Actions
+    @IBAction func didTapFvouritesButton(_ sender: Any) {
+        let vc = UIStoryboard(name: "ArticlesList", bundle: nil).instantiateViewController(withIdentifier: "ArticlesListViewController") as! ArticlesListViewController
+        vc.favorites = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     @IBAction func didTapMostEmailedButton(_ sender: Any) {
         let vc = UIStoryboard(name: "ArticlesList", bundle: nil).instantiateViewController(withIdentifier: "ArticlesListViewController") as! ArticlesListViewController
-        vc.tap = 0
+        vc.selectedTap = 0
 
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func didTapMostSharedButton(_ sender: Any) {
         let vc = UIStoryboard(name: "ArticlesList", bundle: nil).instantiateViewController(withIdentifier: "ArticlesListViewController") as! ArticlesListViewController
-        vc.tap = 1
+        vc.selectedTap = 1
 
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func didTapMostViewedButton(_ sender: Any) {
         let vc = UIStoryboard(name: "ArticlesList", bundle: nil).instantiateViewController(withIdentifier: "ArticlesListViewController") as! ArticlesListViewController
-        vc.tap = 2
+        vc.selectedTap = 2
 
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -49,7 +54,7 @@ class StartViewController: UIViewController {
     // MARK: - Helper
 
     func setupElements() {
-        self.navigationItem.title = "Articles"
+        self.navigationItem.title = "NY Times Article"
         
         self.mostEmailedView.layer.cornerRadius = 15
         self.mostEmailedButton.setTitle("Most Emailed", for: .normal)

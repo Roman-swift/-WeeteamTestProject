@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import ObjectMapper
+import CoreData
 
 class ArticlesListViewController: UIViewController {
     
@@ -23,7 +24,10 @@ class ArticlesListViewController: UIViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     var articles = [ArticleViewModel]()
-    var tap: Int!
+    var articlesDB = [ArticleViewModel]()
+    
+    var selectedTap: Int!
+    var favorites: Bool = false
     private var articleService = ArticleListService()
     private var refreshControl = UIRefreshControl()
     private var typeOfArticle: ArticlePaths.Request?
@@ -41,6 +45,7 @@ class ArticlesListViewController: UIViewController {
             activityIndicator.startAnimating()
             self.loadDataFromApi()
         } else {
+            self.downloadFavourite()
             self.showErrorAlert()
         }
     }
@@ -48,7 +53,7 @@ class ArticlesListViewController: UIViewController {
     
     func loadDataFromApi() {
         
-        switch tap {
+        switch selectedTap {
         case 0:
             typeOfArticle = .mostEmailed
         case 1:
@@ -97,20 +102,6 @@ class ArticlesListViewController: UIViewController {
         })
     }
     
-    //    func saveNewPost (_ article: ArticleViewModel) {
-    //        self.articles.append(article)
-    //        DispatchQueue.main.async {
-    //            self.articlesTableView.reloadData()
-    //        }
-    //    }
-    //
-    //    func removePost (_ indexPath: IndexPath) {
-    //        DispatchQueue.main.async {
-    //            self.articles.remove(at: indexPath.row)
-    //            self.articlesTableView.deleteRows(at: [indexPath], with: .fade)
-    //        }
-    //    }
-    
     @objc func refresh(_ sender: Any) {
         if Connectivity.isConnectedToInternet() {
             activityIndicator.startAnimating()
@@ -120,6 +111,31 @@ class ArticlesListViewController: UIViewController {
             self.showErrorAlert()
         }
     }
+    
+    func downloadFavourite() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ArticleEntity")
+        
+//        do {
+//            articlesDB = try managedContext.fetch(fetchRequest)
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+    }
+    //    func loadSaveData()  {
+    //           let eventRequest: NSFetchRequest<Event> = Event.fetchRequest()
+    //           do{
+    //               eventArray = try manageObjectContext.fetch(eventRequest)
+    //               self.mTableView.reloadData()
+    //           }catch
+    //           {
+    //               print("Could not load save data: \(error.localizedDescription)")
+    //           }
+    //       }
 }
 
 extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -129,8 +145,14 @@ extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticlesListViewController", for: indexPath) as! ArticleTableViewCell
-        cell.configure(articles[indexPath.row])
+        if favorites {
+            self.downloadFavourite()
+//            cell.configure(self.articlesDB[indexPath.row])
+        } else {
+            cell.configure(self.articles[indexPath.row])
+        }
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -143,6 +165,7 @@ extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate
         articleVC.articleUrl = articleModel.url
         articleVC.date = articleModel.date
         articleVC.abstract = articleModel.abstract
+        articleVC.articleModel = articleModel
         articleVC.modalPresentationStyle = .fullScreen
         self.present(articleVC, animated: true, completion: nil)
     }
