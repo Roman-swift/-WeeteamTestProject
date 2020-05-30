@@ -44,19 +44,16 @@ class ArticleTableViewCell: UITableViewCell {
             self.myView.layer.shadowColor = UIColor.black.cgColor
             self.myView.layer.shadowOpacity = 0.23
             self.myView.layer.shadowRadius = 5
-
-//            for i in articleE{
-                self.articleTitleLabel.text = articleE.title
-                self.articleTitleLabel.textColor = .white
-                
-                self.articleAuthorLabel.text =
-                    articleE.author
-                self.articleAuthorLabel.textColor = .white
-                
-                self.articleBodyLable.text = articleE.abstract
-                self.articleBodyLable.textColor = .white
-//            }
             
+            self.articleTitleLabel.text = articleE.title
+            self.articleTitleLabel.textColor = .white
+            
+            self.articleAuthorLabel.text =
+                articleE.author
+            self.articleAuthorLabel.textColor = .white
+            
+            self.articleBodyLable.text = articleE.abstract
+            self.articleBodyLable.textColor = .white            
         }
     }
 }

@@ -87,12 +87,12 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXY-jC-hdq">
-                                <rect key="frame" x="197" y="445" width="20" height="50"/>
+                                <rect key="frame" x="187" y="446.5" width="40" height="32.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="Fs2-dj-OJQ"/>
-                                    <constraint firstAttribute="height" constant="50" id="MJ3-D2-tP3"/>
+                                    <constraint firstAttribute="width" constant="40" id="Fs2-dj-OJQ"/>
+                                    <constraint firstAttribute="height" constant="35" id="MJ3-D2-tP3"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="heart" catalog="system"/>
+                                <state key="normal" backgroundImage="heart" catalog="system"/>
                                 <connections>
                                     <action selector="didTapSaveToFavourites:" destination="RSW-nQ-LCU" eventType="touchUpInside" id="VMA-X6-PPu"/>
                                 </connections>
@@ -107,7 +107,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Z6N-O7-fym" firstAttribute="leading" secondItem="iaW-1R-W9G" secondAttribute="leading" constant="150" id="1RJ-Bz-X80"/>
-                            <constraint firstItem="Z6N-O7-fym" firstAttribute="top" secondItem="nXY-jC-hdq" secondAttribute="bottom" constant="-15" id="3DC-hL-XyP"/>
+                            <constraint firstItem="Z6N-O7-fym" firstAttribute="top" secondItem="nXY-jC-hdq" secondAttribute="bottom" id="3DC-hL-XyP"/>
                             <constraint firstItem="YUF-zx-ukx" firstAttribute="leading" secondItem="XIR-OB-2h2" secondAttribute="leading" id="77G-Sv-XlM"/>
                             <constraint firstItem="cKF-VY-vhg" firstAttribute="leading" secondItem="iaW-1R-W9G" secondAttribute="leading" constant="17" id="BZL-DS-UVA"/>
                             <constraint firstItem="cSd-cB-pTH" firstAttribute="top" secondItem="oY8-HO-8av" secondAttribute="top" id="BdM-at-cOO"/>

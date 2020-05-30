@@ -32,7 +32,7 @@ class DetailViewController: UIViewController {
         self.setup()
     }
     
-    func setup() {
+    private func setup() {
         self.headingTitleLabel.text = heading
         self.titleLabel.text = titleArtcile
         self.authorLabel.text = author
@@ -41,7 +41,7 @@ class DetailViewController: UIViewController {
         self.readmoreButton.addTarget(self, action: #selector(readmoreTapped), for: UIControl.Event.touchUpInside)
     }
     
-    func save() {
+    private func save() {
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
 
             let article = ArticleEntity(entity: ArticleEntity.entity(), insertInto: context)
@@ -63,9 +63,20 @@ class DetailViewController: UIViewController {
     
     @IBAction func didTapSaveToFavourites(_ sender: Any) {
         self.save()
+        self.showSuccessAlert()
     }
     
     @IBAction func backBtnTapped(_ sender: Any) {
        self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func showSuccessAlert(){
+        let alert = UIAlertController(title: "Saved successfully", message: "", preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            alert.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+        })
     }
 }

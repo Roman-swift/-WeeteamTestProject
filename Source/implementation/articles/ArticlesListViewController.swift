@@ -24,11 +24,10 @@ class ArticlesListViewController: UIViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     var articles = [ArticleViewModel]()
-    var articlesDB = [ArticleEntity]()
+    var articlesDB: [ArticleEntity] = []
     var selectedTap: Int!
     var favorites: Bool = false
     
-    private var sortedArticlesDB = [ArticleEntity]()
     private var selectedIndexPath: IndexPath? = nil
     private var refreshControl = UIRefreshControl()
     private var typeOfArticle: ArticlePaths.Request?
@@ -36,7 +35,7 @@ class ArticlesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshControl.addTarget(self, action: #selector(refresh), for:.valueChanged)
+        self.refreshControl.addTarget(self, action: #selector(refresh), for:.valueChanged)
         self.articlesTableView.addSubview(refreshControl)
     }
     
@@ -50,7 +49,12 @@ class ArticlesListViewController: UIViewController {
         }
     }
     
-    func loadDataFromApi() {
+    
+    // MARK: - work with data
+    
+    /* Не выносил работу с нетворком и базой данных с контроллера, так как нам кроме этих двух функций больше никаких не нужно, и расширятся проект так же не будет, и мне показалось не целесообразным тратить время на это, поэтому оставил тут (понятно что в нормальном проекте все было бы разбито по сервисам и менеджерам) */
+
+    private func loadDataFromApi() {
         
         switch selectedTap {
         case 0:
@@ -62,7 +66,7 @@ class ArticlesListViewController: UIViewController {
         default:
             break
         }
-        
+
         let url = ArticlePaths.Request.url(typeOfArticle ?? ArticlePaths.Request.mostEmailed)
         
         AF.request(url(), method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
@@ -86,7 +90,26 @@ class ArticlesListViewController: UIViewController {
                 }
             case .failure(let error):
                 debugPrint(error.localizedDescription)
+                if !Connectivity.isConnectedToInternet() {
+                    self.showErrorAlert()
+                }
             }
+        }
+    }
+    
+    private func fetchArtcileFromCoreDataWithPredicate(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedObject = appDelegate.persistentContainer.viewContext
+        let articleFetchRequest = NSFetchRequest<ArticleEntity>(entityName: "ArticleEntity")
+        
+        do {
+            let articles = try managedObject.fetch(articleFetchRequest)
+            for article in articles{
+                articlesDB.append(article)
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
     
@@ -118,24 +141,7 @@ class ArticlesListViewController: UIViewController {
         self.activityIndicator.stopAnimating()
     }
     
-    private func fetchArtcileFromCoreDataWithPredicate(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedObject = appDelegate.persistentContainer.viewContext
-        let articleFetchRequest = NSFetchRequest<ArticleEntity>(entityName: "ArticleEntity")
-
-        do {
-            let articles = try managedObject.fetch(articleFetchRequest)
-            for article in articles{
-                articlesDB.append(article)
-                self.sortedArticlesDB = Array(Set(self.articlesDB))
-            }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
-    
-    func setupDataBaseDetail(_ model: ArticleEntity) -> UIViewController{
+    private func setupDataBaseDetail(_ model: ArticleEntity) -> UIViewController{
         let storyboard = UIStoryboard(name: "Detail", bundle: nil)
         let articleVC =  storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         articleVC.titleArtcile = model.title
@@ -146,7 +152,7 @@ class ArticlesListViewController: UIViewController {
         return articleVC
     }
     
-    func setupNetworkDetail(_ model: ArticleViewModel) -> UIViewController{
+    private func setupNetworkDetail(_ model: ArticleViewModel) -> UIViewController{
         let storyboard = UIStoryboard(name: "Detail", bundle: nil)
         let articleVC =  storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         articleVC.titleArtcile = model.title
@@ -163,7 +169,7 @@ class ArticlesListViewController: UIViewController {
 extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if favorites {
-            return sortedArticlesDB.count
+            return articlesDB.count
         } else {
             return articles.count
         }
@@ -171,9 +177,8 @@ extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticlesListViewController", for: indexPath) as! ArticleTableViewCell
-        print(sortedArticlesDB.count)
         if favorites {
-            cell.configureFromDb(sortedArticlesDB[indexPath.row])
+            cell.configureFromDb(articlesDB[indexPath.row])
         } else {
             cell.configure(self.articles[indexPath.row])
         }
@@ -188,33 +193,31 @@ extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate
             tableView.deselectRow(at: indexPath, animated: false)
             self.present(vc, animated: true, completion: nil)
         } else {
-            selectedIndexPath = indexPath
             tableView.deselectRow(at: indexPath, animated: false)
-            let vc = self.setupDataBaseDetail(sortedArticlesDB[indexPath.row])
+            let vc = self.setupDataBaseDetail(articlesDB[indexPath.row])
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        selectedIndexPath = indexPath
         return true
     }
-
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedObject = appDelegate.persistentContainer.viewContext
         
         if editingStyle == .delete {
-            
             if !favorites {
                 articles.remove(at: indexPath.row)
                 self.articlesTableView.deleteRows(at: [indexPath], with: .fade)
             } else {
-                sortedArticlesDB.remove(at: indexPath.row)
+                articlesDB.remove(at: indexPath.row + 1)
                 managedObject.delete(articlesDB[indexPath.row])
                 self.articlesTableView.deleteRows(at: [indexPath], with: .fade)
-
+                
                 do {
                     try managedObject.save()
                 } catch let error as NSError {

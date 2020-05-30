@@ -20,7 +20,6 @@
 		1C04DD09247FBFCC0098DA57 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DD07247FBFCB0098DA57 /* ArticleTableViewCell.swift */; };
 		1C04DD0E247FC7AB0098DA57 /* ArticlesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C04DD0D247FC7AB0098DA57 /* ArticlesList.storyboard */; };
 		1C04DD10247FCDCE0098DA57 /* RequestPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DD0F247FCDCE0098DA57 /* RequestPaths.swift */; };
-		1C04DD19248003460098DA57 /* ArticleListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DD18248003460098DA57 /* ArticleListService.swift */; };
 		1C04DD1D248111720098DA57 /* CheckInternetConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04DD1C248111720098DA57 /* CheckInternetConnect.swift */; };
 		1CA61D8B248115A400EBAD2A /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CA61D8A248115A400EBAD2A /* Detail.storyboard */; };
 		1CA61D8D2481165F00EBAD2A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA61D8C2481165F00EBAD2A /* DetailViewController.swift */; };
@@ -43,7 +42,6 @@
 		1C04DD07247FBFCB0098DA57 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		1C04DD0D247FC7AB0098DA57 /* ArticlesList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArticlesList.storyboard; sourceTree = "<group>"; };
 		1C04DD0F247FCDCE0098DA57 /* RequestPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPaths.swift; sourceTree = "<group>"; };
-		1C04DD18248003460098DA57 /* ArticleListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListService.swift; sourceTree = "<group>"; };
 		1C04DD1C248111720098DA57 /* CheckInternetConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternetConnect.swift; sourceTree = "<group>"; };
 		1CA61D8A248115A400EBAD2A /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		1CA61D8C2481165F00EBAD2A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			children = (
 				1C04DCEC247FBB860098DA57 /* articles */,
 				1C04DD1E248114CA0098DA57 /* detail */,
-				1C04DD0C247FC7620098DA57 /* favourites */,
 				1C04DCEB247FA29E0098DA57 /* start */,
 			);
 			path = implementation;
@@ -165,7 +162,6 @@
 				1C04DCED247FBBF30098DA57 /* ArticlesListViewController.swift */,
 				1C04DCEF247FBC9C0098DA57 /* cells */,
 				1C04DCF4247FBDBA0098DA57 /* model */,
-				1C04DD17248003310098DA57 /* service */,
 			);
 			path = articles;
 			sourceTree = "<group>";
@@ -185,21 +181,6 @@
 				1C04DCF5247FBDFB0098DA57 /* ArticleViewModel.swift */,
 			);
 			path = model;
-			sourceTree = "<group>";
-		};
-		1C04DD0C247FC7620098DA57 /* favourites */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = favourites;
-			sourceTree = "<group>";
-		};
-		1C04DD17248003310098DA57 /* service */ = {
-			isa = PBXGroup;
-			children = (
-				1C04DD18248003460098DA57 /* ArticleListService.swift */,
-			);
-			path = service;
 			sourceTree = "<group>";
 		};
 		1C04DD1E248114CA0098DA57 /* detail */ = {
@@ -349,7 +330,6 @@
 				1C04DCD8247FA2010098DA57 /* Weeteam.xcdatamodeld in Sources */,
 				1C04DCD2247FA2010098DA57 /* StartViewController.swift in Sources */,
 				1C04DD1D248111720098DA57 /* CheckInternetConnect.swift in Sources */,
-				1C04DD19248003460098DA57 /* ArticleListService.swift in Sources */,
 				1C04DCEE247FBBF30098DA57 /* ArticlesListViewController.swift in Sources */,
 				1C04DCCE247FA2010098DA57 /* AppDelegate.swift in Sources */,
 				1C04DCD0247FA2010098DA57 /* SceneDelegate.swift in Sources */,
