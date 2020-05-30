@@ -123,7 +123,7 @@ class ArticlesListViewController: UIViewController {
         
         let managedObject = appDelegate.persistentContainer.viewContext
         let articleFetchRequest = NSFetchRequest<ArticleEntity>(entityName: "ArticleEntity")
-        
+
         do {
             let articles = try managedObject.fetch(articleFetchRequest)
             for article in articles{
@@ -163,7 +163,7 @@ class ArticlesListViewController: UIViewController {
 extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if favorites {
-            return articlesDB.count
+            return sortedArticlesDB.count
         } else {
             return articles.count
         }
@@ -171,7 +171,7 @@ extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticlesListViewController", for: indexPath) as! ArticleTableViewCell
-        
+        print(sortedArticlesDB.count)
         if favorites {
             cell.configureFromDb(sortedArticlesDB[indexPath.row])
         } else {
@@ -193,6 +193,35 @@ extension ArticlesListViewController: UITableViewDataSource, UITableViewDelegate
             let vc = self.setupDataBaseDetail(sortedArticlesDB[indexPath.row])
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedObject = appDelegate.persistentContainer.viewContext
+        
+        if editingStyle == .delete {
+            
+            if !favorites {
+                articles.remove(at: indexPath.row)
+                self.articlesTableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                sortedArticlesDB.remove(at: indexPath.row)
+                managedObject.delete(articlesDB[indexPath.row])
+                self.articlesTableView.deleteRows(at: [indexPath], with: .fade)
+
+                do {
+                    try managedObject.save()
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
+            }
+            self.articlesTableView.reloadData()
         }
     }
 }
